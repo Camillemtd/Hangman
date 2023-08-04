@@ -6,7 +6,7 @@ type Game struct {
 	State        string   // Game state
 	Letters      []string // Letters in the word to find
 	FoundLetters []string // Good guesses
-	UseLetters   []string // Used letters
+	UsedLetters   []string // Used letters
 	TurnsLeft    int      //Remaining attempts
 }
 
@@ -21,7 +21,7 @@ func New(turns int, word string) *Game {
 		State: "",
 		Letters: letters,
 		FoundLetters: found,
-		UseLetters: []string{},
+		UsedLetters: []string{},
 		TurnsLeft: turns,
 	}
 	return g
