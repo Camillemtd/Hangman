@@ -30,69 +30,14 @@ func drawTurns(l int) {
 		draw = `
 		 ____
 		|/   |
-		|   
-		|    
-		|    
-		|    
+		|   (_)
+		|   /|\
+		|    |
+		|   | |
 		|
 		|_____
 		`
 	case 1:
-		draw = `
-		 ____
-		|/   |
-		|   (_)
-		|    
-		|    
-		|    
-		|
-		|_____
-		`
-	case 2:
-		draw = `
-		 ____
-		|/   |
-		|   (_)
-		|    |
-		|    |    
-		|    
-		|
-		|_____
-		`
-	case 3:
-		draw = `
-		 ____
-		|/   |
-		|   (_)
-		|   \|
-		|    |
-		|    
-		|
-		|_____
-		`
-	case 4:
-		draw = `
-		 ____
-		|/   |
-		|   (_)
-		|   \|/
-		|    |
-		|    
-		|
-		|_____
-		`
-	case 5:
-		draw = `
-		 ____
-		|/   |
-		|   (_)
-		|   \|/
-		|    |
-		|   / 
-		|
-		|_____
-		`
-	case 6:
 		draw = `
 		 ____
 		|/   |
@@ -103,14 +48,69 @@ func drawTurns(l int) {
 		|
 		|_____
 		`
-	case 7:
+	case 2:
 		draw = `
 		 ____
 		|/   |
 		|   (_)
-		|   /|\
+		|   \|/
 		|    |
-		|   | |
+		|   / 
+		|
+		|_____
+		`
+	case 3:
+		draw = `
+		 ____
+		|/   |
+		|   (_)
+		|   \|/
+		|    |
+		|    
+		|
+		|_____
+		`
+	case 4:
+		draw = `
+		 ____
+		|/   |
+		|   (_)
+		|   \|
+		|    |
+		|    
+		|
+		|_____
+		`
+	case 5:
+		draw = `
+		 ____
+		|/   |
+		|   (_)
+		|    |
+		|    |    
+		|    
+		|
+		|_____
+		`
+	case 6:
+		draw = `
+		 ____
+		|/   |
+		|   (_)
+		|    
+		|    
+		|    
+		|
+		|_____
+		`
+	case 7:
+		draw = `
+		 ____
+		|/   |
+		|   
+		|    
+		|    
+		|    
 		|
 		|_____
 		`
@@ -120,10 +120,10 @@ func drawTurns(l int) {
 		`
 	}
 	fmt.Println(draw)
-	
+
 }
 
-func drawState(g *Game, guess string)  {
+func drawState(g *Game, guess string) {
 	fmt.Print("Guessed: ")
 	drawLetters(g.FoundLetters)
 
@@ -134,11 +134,11 @@ func drawState(g *Game, guess string)  {
 	case "goodGuess":
 		fmt.Println("Good guess!")
 	case "alreadyGuessed":
-		fmt.Printf("Letter '%s' was already used", guess)
+		fmt.Printf("Letter '%s' was already used\n", guess)
 	case "badGuess":
-		fmt.Printf("Bad guess, '%s' is not in the word", guess)
+		fmt.Printf("Bad guess, '%s' is not in the word \n", guess)
 	case "lost":
-		fmt.Print("You lost:(! The word was: )")
+		fmt.Print("You lost:! The word was: ")
 		drawLetters(g.Letters)
 	case "won":
 		fmt.Print("YOU WON! The word was: ")

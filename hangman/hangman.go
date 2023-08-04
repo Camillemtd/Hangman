@@ -1,6 +1,8 @@
 package hangman
 
-import "strings"
+import (
+	"strings"
+)
 
 type Game struct {
 	State        string   // Game state
@@ -39,6 +41,13 @@ func (g *Game) MakeAGuess(guess string) {
 		if hasWon(g.Letters, g.FoundLetters) {
 			g.State = "won"
 		}
+	} else {
+		g.State = "badGuess"
+		g.LoseTurn(guess)
+
+		if g.TurnsLeft <= 0 {
+			g.State = "lost"
+		}
 	}
 }
 
@@ -49,6 +58,12 @@ func (g *Game) RevealLetter(guess string) {
 			g.FoundLetters[i] = guess
 		}
 	}
+}
+
+func (g *Game) LoseTurn(guess string) {
+	g.TurnsLeft--
+	g.UsedLetters = append(g.UsedLetters, guess)
+
 }
 
 func hasWon(letters []string, foundLetters []string) bool {
