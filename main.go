@@ -3,11 +3,19 @@ package main
 import (
 	"fmt"
 	"hangman/hangman"
+	"hangman/dictionary"
 	"os"
 )
 
 func main() {
-	g := hangman.New(8, "Golang")
+
+	err :=dictionary.Load("words.txt")
+	if err != nil {
+		fmt.Printf("Cloud not load dictionnary: %v\n", err)
+		os.Exit(1)
+	}
+
+	g, err := hangman.New(8, dictionary.PickWord())
 
 	hangman.DrawWelcome()
 	guess := ""
