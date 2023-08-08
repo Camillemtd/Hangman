@@ -33,9 +33,37 @@ func TestGameGoodGuess(t *testing.T) {
 	validSate(t, "goodGuess", g.State)
 }
 
-func validSate(t *testing.T, expectedSate, actualState string) bool {
-	if expectedSate != actualState {
-		t.Errorf("state should be '%v'. got=%v", expectedSate, actualState)
+func TestGameBadGuess(t *testing.T) {
+	g, _ := New(3, "bob")
+	g.MakeAGuess("p")
+	validSate(t, "badGuess", g.State)
+}
+
+func TestGameWon(t *testing.T) {
+	g, _ := New(3, "bob")
+	g.MakeAGuess("b")
+	g.MakeAGuess("o")
+	g.MakeAGuess("b")
+	validSate(t, "won", g.State)
+}
+
+func TestGameLost(t *testing.T) {
+	g, _ := New(2, "bob")
+	g.MakeAGuess("a")
+	g.MakeAGuess("z")
+	validSate(t, "lost", g.State)
+}
+
+func TestGameAlreadyGuessed(t *testing.T) {
+	g, _ := New(2, "bob")
+	g.MakeAGuess("a")
+	g.MakeAGuess("a")
+	validSate(t, "alreadyGuessed", g.State)
+}
+
+func validSate(t *testing.T, expectedState, actualState string) bool {
+	if expectedState != actualState {
+		t.Errorf("state should be '%v'. got=%v", expectedState, actualState)
 		return (false)
 	}
 	return true
